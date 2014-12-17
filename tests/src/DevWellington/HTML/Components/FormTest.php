@@ -4,6 +4,11 @@ namespace DevWellington\HTML\Components;
 
 class FormTest extends \PHPUnit_Framework_TestCase
 {
+    public function testVerificaSeAClasseFormPertenceAInterfaceIComponent()
+    {
+        $form = new Form();
+        $this->assertInstanceOf('\DevWellington\HTML\Components\IForm', $form);
+    }
 
     public function testVerificaSeConsegueCriarAClasseForm()
     {
