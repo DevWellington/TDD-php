@@ -1,0 +1,20 @@
+<phpunit backupGlobals="false"
+         bakcupStaticAttributes="false"
+         bootstrap="bootstrap.php"
+         cacheTokens="true"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         syntaxCheck="false"
+         verbose="true">
+    <testsuite name="CodeEducation - TDD (v2)">
+        <directory>.</directory>
+    </testsuite>
+    <logging>
+        <log type="coverage-html" target="./log/report" charset="UTF-8" yui="true" highlight="true" lowUpperBound="35" highLowerBound="80" />
+        <log type="testdox-html" target="./log/testdox.html" />
+    </logging>
+</phpunit>
