@@ -63,7 +63,30 @@ class FormTest extends \PHPUnit_Framework_TestCase
             $form->render()
             )
         ;
-
     }
+
+    public function testVerificaSeConsegueCriarUmFormComVariosComponents()
+    {
+        $input = new Input();
+        $input->setType('text')
+            ->setValue('teste')
+            ->setAttribute('name', 'input-test')
+        ;
+        $label = new Label('input-test');
+
+        $fieldset = new FieldSet();
+        $fieldset
+            ->add($label)
+            ->add($input)
+        ;
+
+        $form = new Form();
+        $form->add($fieldset);
+
+        $this->assertEquals("<form>\n\t<fieldset>\n\t<label for=''>input-test</label>\n\t<input type='text' value='teste' name='input-test' />\n</fieldset>\n</form>",
+            $form->render()
+        );
+    }
+
 
 } 
