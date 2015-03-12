@@ -80,10 +80,20 @@ class FormTest extends \PHPUnit_Framework_TestCase
             ->add($input)
         ;
 
-        $form = new Form();
-        $form->add($fieldset);
+        $select = new Select();
+        $select->setAttribute('name', 'select-name');
 
-        $this->assertEquals("<form>\n\t<fieldset>\n\t<label for=''>input-test</label>\n\t<input type='text' value='teste' name='input-test' />\n</fieldset>\n</form>",
+        $option = new Option(0, 'Opcao 0');
+
+        $select->add($option);
+
+        $form = new Form();
+        $form
+            ->add($fieldset)
+            ->add($select)
+        ;
+
+        $this->assertEquals("<form>\n\t<fieldset>\n\t<label for=''>input-test</label>\n\t<input type='text' value='teste' name='input-test' />\n</fieldset>\n\t<select name='select-name'>\n\t<option value='0'>Opcao 0</option>\n</select>\n</form>",
             $form->render()
         );
     }
