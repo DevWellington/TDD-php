@@ -98,5 +98,14 @@ class FormTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testVerificaSeExistemComponentsSetados()
+    {
+        $fm = new Form();
+        $button = new Button();
+
+        $fm->add($button);
+
+        $this->assertInstanceOf('\DevWellington\HTML\Components\Button', $fm->getComponents()[0]);
+    }
 
 } 

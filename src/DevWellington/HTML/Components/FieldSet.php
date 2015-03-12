@@ -22,18 +22,12 @@ class FieldSet extends AbstractComponent
     /**
      * @return string
      */
-    public function render()
+    public function getComponents()
     {
-        $attr = $this->getAttributes();
-        $components = $this->getComponents();
-
-        return "<fieldset{$attr}>\n{$components}</fieldset>";
+        return $this->components;
     }
 
-    /**
-     * @return string
-     */
-    public function getComponents()
+    public function renderComponents()
     {
         $fs = "";
         if (is_array($this->components))
@@ -42,4 +36,16 @@ class FieldSet extends AbstractComponent
 
         return $fs;
     }
-} 
+
+    /**
+     * @return string
+     */
+    public function render()
+    {
+        $attr = $this->getAttributes();
+        $components = $this->renderComponents();
+
+        return "<fieldset{$attr}>\n{$components}</fieldset>";
+    }
+
+}

@@ -24,6 +24,14 @@ class Form extends AbstractForm
      */
     public function getComponents()
     {
+        return $this->components;
+    }
+
+    /**
+     * @return string
+     */
+    public function renderComponents()
+    {
         $fs = "";
         if (is_array($this->components))
             foreach($this->components as $key=>$value)
@@ -38,7 +46,7 @@ class Form extends AbstractForm
     public function render()
     {
         $attr = $this->getAttributes();
-        $components = $this->getComponents();
+        $components = $this->renderComponents();
 
         return "<form{$attr}>\n{$components}</form>";
     }

@@ -63,4 +63,14 @@ class FieldSetTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testVerificaSeExistemComponentsSetados()
+    {
+        $fs = new FieldSet();
+        $button = new Button();
+
+        $fs->add($button);
+
+        $this->assertInstanceOf('\DevWellington\HTML\Components\Button', $fs->getComponents()[0]);
+    }
+
 } 
