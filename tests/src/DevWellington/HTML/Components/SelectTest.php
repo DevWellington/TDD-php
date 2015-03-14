@@ -46,4 +46,45 @@ class SelectTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("<select name='select-test-option'>\n\t<option value='0'>Opcao 0</option>\n</select>", $sl->render());
     }
 
+    public function testVerificaSeConsegueSetarUmArrayDeOptions()
+    {
+        $sl = new Select();
+        $option = new Option();
+        $option
+            ->setValue(0)
+            ->setDescription("Opcao 0")
+        ;
+
+        $option1 = new Option();
+        $option1
+            ->setValue(1)
+            ->setDescription("Opcao 1")
+        ;
+
+        $options = array($option, $option);
+
+        $sl->setComponents($options);
+
+        $this->assertTrue( is_array($sl->getComponents()) );
+    }
+
+    public function testVerificaSeConseguePegarUmComponentUnico()
+    {
+        $sl = new Select();
+        $option = new Option();
+        $option
+            ->setValue(0)
+            ->setDescription("Opcao 0")
+        ;
+
+        $options = array($option);
+
+        $sl->setComponents($options);
+
+        $this->assertInstanceOf(
+            '\DevWellington\HTML\Components\Option',
+            $sl->getComponents()[0]
+        );
+    }
+
 } 

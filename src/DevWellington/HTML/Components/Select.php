@@ -25,10 +25,18 @@ class Select extends AbstractComponent
      * @param array $options
      * @return $this
      */
-    public function setComponents(array $options)
+    public function setComponents(array $component)
     {
-        $this->options = $options;
+        $this->options = $component;
         return $this;
+    }
+
+    /**
+     * @return IOption[]
+     */
+    public function getComponents()
+    {
+        return $this->options;
     }
 
     /**
@@ -36,9 +44,7 @@ class Select extends AbstractComponent
      */
     public function render()
     {
-
         $attr = $this->getAttributes();
-
         $components = $this->getOptions();
 
         return "<select{$attr}>\n{$components}</select>";

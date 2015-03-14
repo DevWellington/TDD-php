@@ -86,7 +86,7 @@ class DbManagerCategoryTest extends \PHPUnit_Framework_TestCase
     {
         $fakeEntity = new \stdClass();
 
-        $this->dbManager->persist($fakeEntity);
+//        $this->dbManager->persist($fakeEntity);
         $this->assertFalse($this->dbManager->flush());
 
         $data = $this->dbManager->getData();

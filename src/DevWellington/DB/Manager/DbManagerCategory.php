@@ -19,25 +19,20 @@ class DbManagerCategory extends AbstractDbManager
      */
     final public function flush()
     {
+        if ( ! is_array($this->entities))
+            throw new \InvalidArgumentException("Error FLUSH Entity");
+
         foreach ($this->entities as $entity) {
-            if ($entity instanceof EntityCategory) {
+            $query = "INSERT INTO category VALUES (:id, :description)";
+            $stmt = $this->db->prepare($query);
 
-                $query = "INSERT INTO category VALUES (:id, :description)";
-                $stmt = $this->db->prepare($query);
+            $params = array(
+                ':id' => $entity->getId(),
+                ':description' => $entity->getDescription()
+            );
 
-                $params = array(
-                    ':id' => $entity->getId(),
-                    ':description' => $entity->getDescription()
-                );
-
-                return $stmt->execute($params);
-            }
-
-            throw new InvalidArgumentException('Fail in Entity!');
-
+            return $stmt->execute($params);
         }
-
-        return false;
     }
 
     /**
@@ -48,6 +43,9 @@ class DbManagerCategory extends AbstractDbManager
      */
     final public function getData()
     {
+        if ( ! is_array($this->entities))
+            throw new \InvalidArgumentException("Error FLUSH Entity");
+
         foreach ($this->entities as $entity) {
             if ($entity instanceof EntityCategory) {
                 $sql = 'SELECT id, description FROM category';
@@ -55,10 +53,6 @@ class DbManagerCategory extends AbstractDbManager
 
                 return $rs->fetchAll(\PDO::FETCH_ASSOC);
             }
-
-            throw new InvalidArgumentException('Fail in Entity!');
         }
-
-        return false;
     }
 }
