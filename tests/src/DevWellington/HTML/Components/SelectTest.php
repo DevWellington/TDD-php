@@ -63,9 +63,9 @@ class SelectTest extends \PHPUnit_Framework_TestCase
 
         $options = array($option, $option);
 
-        $sl->setComponents($options);
+        $sl->setOptions($options);
 
-        $this->assertTrue( is_array($sl->getComponents()) );
+        $this->assertTrue( is_array($sl->getOptions()) );
     }
 
     public function testVerificaSeConseguePegarUmComponentUnico()
@@ -79,11 +79,11 @@ class SelectTest extends \PHPUnit_Framework_TestCase
 
         $options = array($option);
 
-        $sl->setComponents($options);
+        $sl->setOptions($options);
 
         $this->assertInstanceOf(
             '\DevWellington\HTML\Components\Option',
-            $sl->getComponents()[0]
+            $sl->getOptions()[0]
         );
     }
 

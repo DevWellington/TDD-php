@@ -4,12 +4,10 @@ namespace DevWellington\HTML\Components;
 
 class Select extends AbstractComponent
 {
-
     /**
      * @var $options IOption[]
      */
     private $options;
-
 
     /**
      * @param IOption $component
@@ -25,16 +23,16 @@ class Select extends AbstractComponent
      * @param array $options
      * @return $this
      */
-    public function setComponents(array $component)
+    public function setOptions(array $options)
     {
-        $this->options = $component;
+        $this->options = $options;
         return $this;
     }
 
     /**
      * @return IOption[]
      */
-    public function getComponents()
+    public function getOptions()
     {
         return $this->options;
     }
@@ -45,7 +43,7 @@ class Select extends AbstractComponent
     public function render()
     {
         $attr = $this->getAttributes();
-        $components = $this->getOptions();
+        $components = $this->renderOptions();
 
         return "<select{$attr}>\n{$components}</select>";
     }
@@ -53,7 +51,7 @@ class Select extends AbstractComponent
     /**
      * @return string
      */
-    public function getOptions()
+    public function renderOptions()
     {
         $sl = "";
         if (is_array($this->options))
@@ -62,4 +60,4 @@ class Select extends AbstractComponent
 
         return $sl;
     }
-} 
+}
