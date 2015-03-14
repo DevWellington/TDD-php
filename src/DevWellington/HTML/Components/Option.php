@@ -6,6 +6,10 @@ class Option implements IOption
 {
     private $value;
     private $description;
+    /**
+     * @var bool
+     */
+    private $selected = false;
 
     public function __construct($value = null, $description = null)
     {
@@ -15,7 +19,11 @@ class Option implements IOption
 
     public function render()
     {
-        return "<option value='{$this->value}'>$this->description</option>";
+        $selected = "";
+        if ($this->isSelected())
+            $selected = " selected";
+
+        return "<option value='{$this->value}'{$selected}>$this->description</option>";
     }
 
     /**
@@ -52,4 +60,21 @@ class Option implements IOption
         return $this;
     }
 
-} 
+    /**
+     * @return boolean
+     */
+    public function isSelected()
+    {
+        return $this->selected;
+    }
+
+    /**
+     * @param boolean $selected
+     */
+    public function setSelected($selected)
+    {
+        $this->selected = $selected;
+        return $this;
+    }
+
+}

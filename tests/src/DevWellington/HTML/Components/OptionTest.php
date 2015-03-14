@@ -26,6 +26,17 @@ class OptionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(0, $op->getValue());
         $this->assertEquals('Opcao 0', $op->getDescription());
+    }
 
+    public function testVerificaSeOptionIsSelected()
+    {
+        $op = new Option();
+        $op
+            ->setValue(0)
+            ->setDescription("TESTE 0")
+            ->setSelected(true)
+        ;
+
+        $this->assertTrue($op->isSelected());
     }
 } 
