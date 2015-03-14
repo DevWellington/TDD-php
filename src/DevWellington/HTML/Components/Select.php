@@ -21,6 +21,15 @@ class Select extends AbstractComponent
         return $this;
     }
 
+    /**
+     * @param array $options
+     * @return $this
+     */
+    public function setComponents(array $options)
+    {
+        $this->options = $options;
+        return $this;
+    }
 
     /**
      * @return string
