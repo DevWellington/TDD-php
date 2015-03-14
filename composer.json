@@ -6,6 +6,7 @@
 		"psr-0": {"DevWellington": "src/"}
 	},
 	"require": {
-		"phpunit/phpunit": "4.2.6"
+		"phpunit/phpunit": "4.2.6",
+        "aura/di": "1.0.0"
 	}
 }
