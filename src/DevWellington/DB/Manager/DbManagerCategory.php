@@ -43,16 +43,11 @@ class DbManagerCategory extends AbstractDbManager
      */
     final public function getData()
     {
-        if ( ! is_array($this->entities))
-            throw new \InvalidArgumentException("Error FLUSH Entity");
+        $sql = 'SELECT id, description FROM category';
+        $rs = $this->db->prepare($sql);
+        if($rs->execute())
+            return $rs->fetchAll(\PDO::FETCH_ASSOC);
 
-        foreach ($this->entities as $entity) {
-            if ($entity instanceof EntityCategory) {
-                $sql = 'SELECT id, description FROM category';
-                $rs = $this->db->query($sql);
-
-                return $rs->fetchAll(\PDO::FETCH_ASSOC);
-            }
-        }
+        return false;
     }
 }
