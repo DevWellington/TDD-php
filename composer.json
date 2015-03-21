@@ -4,12 +4,13 @@
 	},
 	"autoload": {
 		"psr-0": {
-            "DevWellington": "src/",
-            "Application": "src/"
-        }
+			"DevWellington": "src/",
+			"Application": "src/"
+		}
 	},
 	"require": {
 		"phpunit/phpunit": "4.2.6",
-        "aura/di": "1.0.0"
+		"aura/di": "1.0.0",
+		"phpunit/phpunit-selenium": "dev-master"
 	}
 }
