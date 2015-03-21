@@ -30,6 +30,7 @@ class Router implements IRouter
      */
     public function __construct($baseUrl)
     {
+
         $requestUrl = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
         $requestString = substr($requestUrl, strlen($baseUrl));
 

@@ -7,8 +7,8 @@ class RouterTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         // simulate url test
-        $_SERVER['HTTP_HOST'] = 'localhost';
-        $_SERVER['REQUEST_URI'] = '/produto/index';
+        $_SERVER['HTTP_HOST'] = 'localhost:8080';
+        $_SERVER['REQUEST_URI'] = '';
     }
 
     public function tearDown()
@@ -19,7 +19,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase
 
     public function testVerificaSeAClasseRouterPertenceAInterfaceIRouter()
     {
-        $baseUrl = "http://localhost/produto/index";
+        $baseUrl = "http://localhost:8080";
 
         $this->assertInstanceOf(
             '\DevWellington\Router\IRouter',
@@ -29,12 +29,36 @@ class RouterTest extends \PHPUnit_Framework_TestCase
 
     public function testVerificaSeConsegueCriarAClasseProdutoRouter()
     {
-        $baseUrl = "http://localhost/Produto/index";
+        $baseUrl = "http://localhost:8080";
 
         $this->assertInstanceOf(
             '\DevWellington\Router\Router',
             new Router($baseUrl)
         );
+    }
+
+    public function testVerificaSeConsegueCapturarOControllerName()
+    {
+        $baseUrl = "http://localhost:8080/";
+
+        $_SERVER['HTTP_HOST'] = 'localhost:8080';
+        $_SERVER['REQUEST_URI'] = '/produto/index';
+
+        $router = new Router($baseUrl);
+
+        $this->assertEquals('\Application\Controller\ProdutoController', $router->getControllerName());
+    }
+
+    public function testVerificaSeConsegueCapturarAActionName()
+    {
+        $baseUrl = "http://localhost:8080/";
+
+        $_SERVER['HTTP_HOST'] = 'localhost:8080';
+        $_SERVER['REQUEST_URI'] = '/produto/index';
+
+        $router = new Router($baseUrl);
+
+        $this->assertEquals('indexAction', $router->getActionName());
     }
 
 } 

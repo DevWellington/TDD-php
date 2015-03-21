@@ -9,7 +9,6 @@ abstract class AbstractFormValidator implements IValidator
     public function validate($data)
     {
         $this->data = $data;
-        return true;
     }
 
     public function isValid()

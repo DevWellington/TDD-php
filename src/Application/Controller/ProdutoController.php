@@ -11,6 +11,8 @@ use DevWellington\HTML\Components\Input;
 use DevWellington\HTML\Components\Label;
 use DevWellington\HTML\Components\Select;
 use DevWellington\HTML\Components\Form;
+use DevWellington\Validator\IValidator;
+use DevWellington\Validator\ProdutoFormValidator;
 
 class ProdutoController implements IController
 {
@@ -23,6 +25,11 @@ class ProdutoController implements IController
      * @var \PDO
      */
     private $pdo;
+
+    /**
+     * @var IValidator
+     */
+    public $validator;
 
     public function __construct(\PDO $pdo)
     {
@@ -67,6 +74,8 @@ class ProdutoController implements IController
 
                 }
 
+        $this->validator = new ProdutoFormValidator();
+        $this->validator->validate($arrayData);
     }
 
     private function createForm()
